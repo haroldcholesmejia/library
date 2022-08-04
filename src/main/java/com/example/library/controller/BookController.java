@@ -26,27 +26,26 @@ public class BookController {
     }
 
     @GetMapping("")
-    public List<Book> getAll(@RequestParam(required = false) String authorId, String name){
-    
+    public List<Book> getAll(@RequestParam(required = false) String authorId, String name, String año){
+  
 
-        
-        if ((authorId == null) && (name == null)){
-            return this.bookService.getAll();
-        }else{
-
-            if ((authorId == null) && (name != null)){
+            if ((año == null) && (authorId == null) && (name != null)){
                 return this.bookService.findByName(name);
             }else{
 
-                if ((authorId != null) && (name == null)){
+                if ((authorId != null) && (name == null) && (año == null)){
                     return this.bookService.findByAuthor(authorId);
                 }else{
-                    return this.bookService.getAll();
 
+                    if ((authorId == null) && (name == null) && (año != null)){
+                    return this.bookService.findByAño(año);
+                      }else{
+                         return this.bookService.getAll();
+                    }
                 }
 
             }
-        } 
+         
    }
 
     @GetMapping("/{bookId}")

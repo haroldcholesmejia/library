@@ -35,15 +35,6 @@ public class MemoryBookRepository implements BooksRepository{
 
     @Override
     public List<Book> findByAuthor(String author) {
-    /*List<books> ret= new ArrayList<>();
-     // for (books book : booksMap.values()){
-      //  if (book.getBookAuthor().indexOf(Author) >= 0){
-      //7/      ret.add(book);
-      //  }
-     // }
-      //return ret;
-      */
-
         return booksMap.values().stream()
 				.filter(book -> book.getBookAuthor().toLowerCase().indexOf(author.toLowerCase()) >= 0 )
         .collect(Collectors.toList());
@@ -70,6 +61,14 @@ public class MemoryBookRepository implements BooksRepository{
     @Override
     public Book delete(String bookId) {
        return booksMap.remove(bookId);
+    }
+
+    @Override
+    public List<Book> findByAño(String año) {
+        // TODO Auto-generated method stub
+        return booksMap.values().stream()
+				.filter(book -> book.getBookAño().toLowerCase().indexOf(año.toLowerCase()) >= 0 )
+        .collect(Collectors.toList());
     }
 
 }

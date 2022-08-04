@@ -27,6 +27,10 @@ public class BookService {
         return bookRepository.findByAuthor(authorId);
     }
 
+    public List<Book> findByAño(String año){
+        return bookRepository.findByAño(año);
+    }
+
     public List<Book> findByName(String name){
         return bookRepository.findByName(name);
     }
